@@ -1,16 +1,16 @@
-// Copyright 2014 Google Inc. All rights reserved.
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-// http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+    // Copyright 2014 Google Inc. All rights reserved.
+    //
+    // Licensed under the Apache License, Version 2.0 (the "License");
+    // you may not use this file except in compliance with the License.
+    // You may obtain a copy of the License at
+    //
+    // http://www.apache.org/licenses/LICENSE-2.0
+    //
+    // Unless required by applicable law or agreed to in writing, software
+    // distributed under the License is distributed on an "AS IS" BASIS,
+    // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    // See the License for the specific language governing permissions and
+    // limitations under the License.
 
 #import <UIKit/UIKit.h>
 #import <WebKit/WebKit.h>
@@ -46,9 +46,9 @@ typedef NS_ENUM(NSInteger, YTPlayerError) {
     kYTPlayerErrorInvalidParam,
     kYTPlayerErrorHTML5Error,
     kYTPlayerErrorVideoNotFound, // Functionally equivalent error codes 100 and
-    // 105 have been collapsed into |kYTPlayerErrorVideoNotFound|.
+                                 // 105 have been collapsed into |kYTPlayerErrorVideoNotFound|.
     kYTPlayerErrorNotEmbeddable, // Functionally equivalent error codes 101 and
-    // 150 have been collapsed into |kYTPlayerErrorNotEmbeddable|.
+                                 // 150 have been collapsed into |kYTPlayerErrorNotEmbeddable|.
     kYTPlayerErrorUnknown
 };
 
@@ -116,7 +116,7 @@ typedef void (^YTPlaybackQualityCompletionHandler)(YTPlaybackQuality result,
  * Callback invoked when setting up the webview to allow custom colours so it fits in
  * with app color schemes. If a transparent view is required specify clearColor and
  * the code will handle the opacity etc.
- * 
+ *
  * @param playerView The YTPlayerView instance where the error has occurred.
  * @return A color object that represents the background color of the webview.
  */
@@ -130,16 +130,19 @@ typedef void (^YTPlaybackQualityCompletionHandler)(YTPlaybackQuality result,
  *
  * The default implementation does not display any custom loading views so the player will display
  * a blank view with a background color of (-playerViewPreferredWebViewBackgroundColor:).
- * 
- * Note that the custom loading view WILL NOT be displayed after iframe is loaded. It will be 
+ *
+ * Note that the custom loading view WILL NOT be displayed after iframe is loaded. It will be
  * handled by YouTube iframe API. This callback is just intended to tell users the view is actually
  * doing something while iframe is being loaded, which will take some time if users are in poor networks.
  *
  * @param playerView The YTPlayerView instance where the error has occurred.
- * @return A view object that will be displayed while YouTube iframe API is being loaded. 
+ * @return A view object that will be displayed while YouTube iframe API is being loaded.
  *         Pass nil to display no custom loading view. Default implementation returns nil.
  */
 - (nullable UIView *)playerViewPreferredInitialLoadingView:(nonnull YTPlayerView *)playerView;
+
+
+- (void)playerView:(nonnull YTPlayerView *)playerView shouldInteractWithUrl:(NSURL *_Nonnull)url;
 
 @end
 
@@ -249,8 +252,8 @@ typedef void (^YTPlaybackQualityCompletionHandler)(YTPlaybackQuality result,
 
 #pragma mark - Player controls
 
-// These methods correspond to their JavaScript equivalents as documented here:
-//   https://developers.google.com/youtube/iframe_api_reference#Playback_controls
+    // These methods correspond to their JavaScript equivalents as documented here:
+    //   https://developers.google.com/youtube/iframe_api_reference#Playback_controls
 
 /**
  * Starts or resumes playback on the loaded video. Corresponds to this method from
@@ -286,9 +289,9 @@ typedef void (^YTPlaybackQualityCompletionHandler)(YTPlaybackQuality result,
 
 #pragma mark - Cueing videos
 
-// Cueing functions for videos. These methods correspond to their JavaScript
-// equivalents as documented here:
-//   https://developers.google.com/youtube/iframe_api_reference#Queueing_Functions
+    // Cueing functions for videos. These methods correspond to their JavaScript
+    // equivalents as documented here:
+    //   https://developers.google.com/youtube/iframe_api_reference#Queueing_Functions
 
 /**
  * Cues a given video by its video ID for playback starting at the given time.
@@ -396,9 +399,9 @@ typedef void (^YTPlaybackQualityCompletionHandler)(YTPlaybackQuality result,
 
 #pragma mark - Cueing functions for playlists
 
-// Cueing functions for playlists. These methods correspond to
-// the JavaScript methods defined here:
-//    https://developers.google.com/youtube/js_api_reference#Playlist_Queueing_Functions
+    // Cueing functions for playlists. These methods correspond to
+    // the JavaScript methods defined here:
+    //    https://developers.google.com/youtube/js_api_reference#Playlist_Queueing_Functions
 
 /**
  * Cues a given playlist with the given ID. The |index| parameter specifies the 0-indexed
@@ -459,9 +462,9 @@ typedef void (^YTPlaybackQualityCompletionHandler)(YTPlaybackQuality result,
 
 #pragma mark - Playing a video in a playlist
 
-// These methods correspond to the JavaScript API as defined under the
-// "Playing a video in a playlist" section here:
-//    https://developers.google.com/youtube/iframe_api_reference#Playback_status
+    // These methods correspond to the JavaScript API as defined under the
+    // "Playing a video in a playlist" section here:
+    //    https://developers.google.com/youtube/iframe_api_reference#Playback_status
 
 /**
  * Loads and plays the next video in the playlist. Corresponds to this method from
@@ -546,8 +549,8 @@ typedef void (^YTPlaybackQualityCompletionHandler)(YTPlaybackQuality result,
 - (void)setShuffle:(BOOL)shuffle;
 
 #pragma mark - Playback status
-// These methods correspond to the JavaScript methods defined here:
-//    https://developers.google.com/youtube/js_api_reference#Playback_status
+    // These methods correspond to the JavaScript methods defined here:
+    //    https://developers.google.com/youtube/js_api_reference#Playback_status
 
 /**
  * Returns a number between 0 and 1 that specifies the percentage of the video
@@ -580,9 +583,9 @@ typedef void (^YTPlaybackQualityCompletionHandler)(YTPlaybackQuality result,
 
 #pragma mark - Retrieving video information
 
-// Retrieving video information. These methods correspond to the JavaScript
-// methods defined here:
-//   https://developers.google.com/youtube/js_api_reference#Retrieving_video_information
+    // Retrieving video information. These methods correspond to the JavaScript
+    // methods defined here:
+    //   https://developers.google.com/youtube/js_api_reference#Retrieving_video_information
 
 /**
  * Returns the duration in seconds since the video of the video. This
@@ -615,9 +618,9 @@ typedef void (^YTPlaybackQualityCompletionHandler)(YTPlaybackQuality result,
 
 #pragma mark - Retrieving playlist information
 
-// Retrieving playlist information. These methods correspond to the
-// JavaScript defined here:
-//    https://developers.google.com/youtube/js_api_reference#Retrieving_playlist_information
+    // Retrieving playlist information. These methods correspond to the
+    // JavaScript defined here:
+    //    https://developers.google.com/youtube/js_api_reference#Retrieving_playlist_information
 
 /**
  * Returns an ordered array of video IDs in the playlist. This method corresponds
